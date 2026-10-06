@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>视频偏好评估 · Video Study</title><link rel="stylesheet" href="styles.css"><script defer src="core.js"></script><script defer src="app.js"></script></head>
+<body>
+<header class="site-header"><a class="brand" href="./"><span class="brand-icon" aria-hidden="true">◧</span> VIDEO STUDY</a><span class="header-note">视频偏好评估</span></header>
+<main>
+<section id="welcome" class="welcome panel" hidden>
+ <p class="eyebrow">PAIRWISE VIDEO EVALUATION</p><h1>哪一段视频<br>更符合你的期待？</h1>
+ <p class="lead">相同的提示词，两段不同的视频。<br>请根据观看体验，选出你认为整体更好的一段。</p>
+ <div class="instructions"><h2>开始之前</h2><ol><li>阅读提示词，并观看 A、B 两段视频。</li><li>综合考虑<strong>画面质量</strong>与<strong>提示词一致性</strong>：画面是否自然清晰、动作是否流畅、内容是否符合描述。</li><li>选择整体更好的视频，再确认进入下一组。即使差异很小，也请选择更倾向的一侧。</li></ol><p>较长视频仅展示原片的最后 10 秒，请根据展示的片段判断。视频来源保持匿名，左右位置与题目顺序随机。可以同步播放、暂停或拖动进度条回看。</p></div>
+ <div class="study-meta"><span><strong id="total-count">—</strong> 组比较</span><span>约 2–4 分钟</span><span>无需姓名或邮箱</span></div>
+ <p class="privacy">参与完全自愿，可随时暂停。进度保存在当前浏览器；完成后会自动将匿名编号与答案提交到研究服务器，你也可下载备份。</p>
+ <label class="consent"><input type="checkbox" id="consent">我已阅读说明，并愿意参与本次评估。</label>
+ <button class="primary" id="start" disabled>开始评估 <span aria-hidden="true">→</span></button>
+ <div id="resume-info" class="resume-info" hidden></div>
+</section>
+<section id="evaluation" hidden>
+ <div class="progress-head"><span id="position"></span><span id="answered-count"></span></div><progress id="progress" value="0" max="10" aria-label="评估完成进度"></progress>
+ <div class="question"><p class="eyebrow">YOUR PREFERENCE</p><h1>你更喜欢哪一段？</h1><p>请综合考虑画面质量，以及与提示词的一致性。</p></div>
+ <section class="prompt panel" aria-labelledby="prompt-label"><h2 id="prompt-label">TEXT PROMPT <span>提示词</span></h2><p id="prompt" class="prompt-en" lang="en"></p><div class="prompt-translation"><h3>中文</h3><p id="prompt-zh" lang="zh-CN"></p></div></section>
+ <div class="video-grid">
+  <section class="video-card"><div class="video-top"><span class="video-label">A</span><span>视频 A</span><span class="viewed" id="viewed-left">等待播放</span></div><div class="video-stage"><video id="video-left" controls playsinline muted preload="metadata" aria-label="视频 A"></video></div><button class="choice" id="choose-left" aria-pressed="false"><span class="choice-circle" aria-hidden="true"></span>我更喜欢视频 A</button></section>
+  <section class="video-card"><div class="video-top"><span class="video-label">B</span><span>视频 B</span><span class="viewed" id="viewed-right">等待播放</span></div><div class="video-stage"><video id="video-right" controls playsinline muted preload="metadata" aria-label="视频 B"></video></div><button class="choice" id="choose-right" aria-pressed="false"><span class="choice-circle" aria-hidden="true"></span>我更喜欢视频 B</button></section>
+ </div>
+ <div class="playback panel"><div class="playback-buttons"><button id="play" class="secondary">同时播放</button><button id="pause" class="quiet">暂停</button><button id="replay" class="quiet">从头重播</button></div><label class="timeline"><span class="sr-only">两段视频的同步播放进度</span><input id="seek" type="range" min="0" max="1" value="0" step="0.01" disabled><span id="time">0:00 / —</span></label><p>拖动任一视频的进度条，另一段也会同步移动。</p></div>
+ <p id="media-status" class="status" role="status" aria-live="polite"></p>
+ <div class="navigation"><button id="previous" class="quiet">← 上一组</button><span id="answer-hint">请观看两段视频后，选择 A 或 B。</span><button id="next" class="primary" disabled>确认并继续 →</button></div>
+ <div class="session-tools"><button id="backup" class="text-button">下载当前进度</button><button id="break" class="text-button">暂停评估</button><span id="save-state">答案保存在此浏览器</span></div>
+</section>
+<section id="complete" class="welcome panel" hidden><p class="eyebrow">EVALUATION COMPLETE</p><div class="completion-icon" aria-hidden="true">✓</div><h1>感谢你的认真观看。</h1><p class="lead">所有比较已完成。结果会自动保存，<br>请确认下方显示“已成功提交”。</p><p class="privacy">仅记录匿名评估编号与答案，不包含姓名或邮箱。你可以下载一份结果备份。</p><div id="submission-status" class="submission-status" data-state="sending" role="status" aria-live="polite"><strong id="submission-title">正在保存结果…</strong><p id="submission-message">请等待服务器确认。</p><p id="submission-receipt" hidden></p><button id="retry-submit" class="secondary" hidden>重新提交</button></div><div class="download-actions"><button id="download-json" class="primary">下载备份 JSON</button><button id="download-csv" class="secondary">下载备份 CSV</button></div><p id="export-status" role="status"></p><button id="review" class="text-button">返回检查答案</button><button id="new-session" class="text-button">在此设备开始另一位评估者的评估</button></section>
+<section id="fatal" class="panel" hidden><h1>暂时无法加载评估</h1><p id="fatal-message"></p><button onclick="location.reload()" class="primary">重新加载</button></section>
+<noscript>请启用 JavaScript 后参加评估。</noscript>
+</main><footer>VIDEO STUDY <span>同一提示词 · 独立判断</span></footer>
+</body></html>
