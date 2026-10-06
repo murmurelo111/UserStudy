@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "trialsPerSession": 10,
+  "trialsPerSession": 15,
   "sampling": "distinct-case-groups",
   "videos": {
     "930011df449c4016b2416b85288f2aa4": {
@@ -2155,6 +2155,6 @@
       "promptZh": "一个人正在跳芭蕾舞。"
     }
   ],
-  "version": "efaf4948f80689ba9672",
+  "version": "6427b0f1c98105615ce2",
   "mediaRevision": "tail10-v1"
 }

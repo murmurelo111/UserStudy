@@ -8,14 +8,14 @@
  <p class="eyebrow">PAIRWISE VIDEO EVALUATION</p><h1>哪一段视频<br>更符合你的期待？</h1>
  <p class="lead">相同的提示词，两段不同的视频。<br>请根据观看体验，选出你认为整体更好的一段。</p>
  <div class="instructions"><h2>开始之前</h2><ol><li>阅读提示词，并观看 A、B 两段视频。</li><li>综合考虑<strong>画面质量</strong>与<strong>提示词一致性</strong>：画面是否自然清晰、动作是否流畅、内容是否符合描述。</li><li>选择整体更好的视频，再确认进入下一组。即使差异很小，也请选择更倾向的一侧。</li></ol><p>较长视频仅展示原片的最后 10 秒，请根据展示的片段判断。视频来源保持匿名，左右位置与题目顺序随机。可以同步播放、暂停或拖动进度条回看。</p></div>
- <div class="study-meta"><span><strong id="total-count">—</strong> 组比较</span><span>约 2–4 分钟</span><span>无需姓名或邮箱</span></div>
+ <div class="study-meta"><span><strong id="total-count">—</strong> 组比较</span><span>约 3–6 分钟</span><span>无需姓名或邮箱</span></div>
  <p class="privacy">参与完全自愿，可随时暂停。进度保存在当前浏览器；完成后会自动将匿名编号与答案提交到研究服务器，你也可下载备份。</p>
  <label class="consent"><input type="checkbox" id="consent">我已阅读说明，并愿意参与本次评估。</label>
  <button class="primary" id="start" disabled>开始评估 <span aria-hidden="true">→</span></button>
  <div id="resume-info" class="resume-info" hidden></div>
 </section>
 <section id="evaluation" hidden>
- <div class="progress-head"><span id="position"></span><span id="answered-count"></span></div><progress id="progress" value="0" max="10" aria-label="评估完成进度"></progress>
+ <div class="progress-head"><span id="position"></span><span id="answered-count"></span></div><progress id="progress" value="0" max="15" aria-label="评估完成进度"></progress>
  <div class="question"><p class="eyebrow">YOUR PREFERENCE</p><h1>你更喜欢哪一段？</h1><p>请综合考虑画面质量，以及与提示词的一致性。</p></div>
  <section class="prompt panel" aria-labelledby="prompt-label"><h2 id="prompt-label">TEXT PROMPT <span>提示词</span></h2><p id="prompt" class="prompt-en" lang="en"></p><div class="prompt-translation"><h3>中文</h3><p id="prompt-zh" lang="zh-CN"></p></div></section>
  <div class="video-grid">
